@@ -1,24 +1,44 @@
-# Website Ucapan Ulang Tahun Interaktif
+# 🎂 Website Ucapan Ulang Tahun Interaktif
 
-DEMO LIVE : https://poizocodee.github.io/website-ulang-tahun-edit-data-di-admin/
+### Interactive Birthday Greeting Website: single HTML file, no framework, editable admin panel
+
+[![Demo Live](https://img.shields.io/badge/Demo-Live-ff69b4?style=for-the-badge)](https://poizocodee.github.io/website-ulang-tahun-edit-data-di-admin/)
+![HTML](https://img.shields.io/badge/HTML-CSS-JS-orange?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+
+**🔗 DEMO LIVE:** https://poizocodee.github.io/website-ulang-tahun-edit-data-di-admin/
+
+![Preview](screenshots/preview.gif)
 
 Website ucapan ulang tahun yang dibuat dalam **satu file HTML** (tanpa framework, tanpa server, tanpa build). Cukup buka file-nya di browser, dan penerima akan melewati serangkaian halaman interaktif: mulai dari tirai/amplop yang dibuka, kartu ucapan, galeri foto, tiup lilin, sampai kejutan di akhir.
 
-Dibuat sebagai hadiah personal untuk ulang tahun ke-20. Semua teks, foto, dan tema bisa diganti lewat panel admin yang ada di dalam file itu sendiri, jadi proyek ini bisa dipakai ulang untuk orang lain.
+Semua teks, foto, dan tema bisa diganti lewat **panel admin** yang ada di dalam file itu sendiri, jadi project ini bisa dipakai ulang sebagai **template** untuk siapa saja.
 
-## Fitur
+**Keywords:** birthday website, happy birthday, ulang tahun, ucapan ulang tahun, birthday card, birthday template, github pages, vanilla javascript, single file html
 
-**Alur halaman**
+---
+
+## ⚠️ Baca Dulu Sebelum Dipakai
+
+- **Ganti password admin default** (`admin` / `admin`) sebelum file dibagikan.
+- **Foto pribadi ikut tertanam di file.** Kalau repo publik, semua foto, gambar, dan nota di dalam file bisa dilihat dan diunduh siapa saja. Pakai foto contoh untuk repo publik, atau simpan versi pribadi di repo **private**.
+- **Keamanan panel admin bersifat kosmetik.** Login berjalan di sisi browser, jadi bukan perlindungan sungguhan. Jangan simpan hal rahasia di dalamnya.
+
+---
+
+## ✨ Fitur
+
+### Alur halaman
 
 1. **Pembuka**: tirai panggung yang terbuka (default) atau amplop yang dibuka dengan ketukan.
 2. **Sampul**: foto bulat, nama, dan ucapan singkat.
 3. **Ucapan**: 14 kartu pesan yang berganti satu per satu dengan indikator titik.
 4. **Galeri**: dua baris foto yang bisa digeser, yaitu "Kita Berdua" dan "Solo".
 5. **Kue ulang tahun**: ketuk setiap lilin untuk memadamkannya.
-6. **Kejutan**: gambar X-ray cincin custom dan nota pembeliannya (bisa dibuka/ditutup).
+6. **Kejutan**: gambar custom dan nota pembeliannya (bisa dibuka/ditutup).
 7. **Penutup**: pesan akhir, kembang api, konfeti, dan bunga bermekaran, lalu tombol untuk mengulang dari awal.
 
-**Efek & suasana**
+### Efek & suasana
 
 - Musik *Happy Birthday* yang **disintesis langsung di browser** lewat Web Audio API (bukan file audio, jadi tidak ada masalah hak cipta dan ukuran file tetap kecil). Ada tombol suara di pojok layar untuk mute/unmute.
 - Kembang api, konfeti, balon, dan hati/bunga melayang di latar.
@@ -27,35 +47,40 @@ Dibuat sebagai hadiah personal untuk ulang tahun ke-20. Semua teks, foto, dan te
 - Menghormati pengaturan `prefers-reduced-motion`.
 - Layout mobile-first, ukuran kartu menyesuaikan layar.
 
-**Panel admin (tanpa backend)**
+### Panel admin (tanpa backend)
 
 Bisa diganti langsung dari browser:
 
 - Nama lengkap dan nama panggilan
-- **Semua teks**: 14 kartu ucapan (tambah, hapus, ubah urutan), kalimat di sampul, teks kejutan cincin, dan seluruh pesan penutup
+- **Semua teks**: 14 kartu ucapan (tambah, hapus, ubah urutan), kalimat di sampul, teks kejutan, dan seluruh pesan penutup
 - Foto sampul
 - Foto galeri (tambah/hapus, mendukung upload banyak sekaligus)
-- Gambar X-ray dan nota
+- Gambar kejutan dan nota
 - Gaya pembuka (tirai atau amplop)
 - Jenis bunga (mawar, sakura, matahari, tulip, teratai, aster, kembang sepatu, buket, atau tanpa bunga)
 - 8 tema warna: Mawar, Sakura, Lavender, Laut, Senja, Hutan, Emas, Malam
 - Password admin
 
-## Cara Pakai
+---
 
-1. Download file `ucapan-ulang-tahun-imelda.html`.
+## 🚀 Cara Pakai
+
+1. Download file `index.html` dari repo ini.
 2. Buka di browser (Chrome, Safari, Firefox, Edge). Tidak perlu internet, kecuali untuk memuat font Google Fonts. Tanpa internet tampilan tetap jalan dengan font cadangan.
 3. Ketuk/klik layar untuk memulai.
 
 > Musik baru bisa berbunyi setelah ada interaksi pertama dari pengguna (aturan autoplay browser). Itu sebabnya musik dimulai saat tirai/amplop dibuka.
 
-### Hosting di GitHub Pages (opsional)
+### Hosting di GitHub Pages (gratis)
 
-1. Ganti nama file menjadi `index.html`.
-2. Buka **Settings → Pages**, pilih branch `main` dan folder `/ (root)`.
-3. Website akan tersedia di `https://<username>.github.io/<nama-repo>/`.
+1. Pastikan file bernama `index.html` dan berada di root repo.
+2. Buka **Settings → Pages**, pilih branch `main` dan folder `/ (root)`, lalu **Save**.
+3. Kosongkan kolom **Custom domain** kalau tidak punya domain sendiri.
+4. Website akan tersedia di `https://<username>.github.io/<nama-repo>/`.
 
-## Cara Mengubah Isi
+---
+
+## 🛠️ Cara Mengubah Isi
 
 ### Lewat panel admin
 
@@ -70,7 +95,7 @@ Panel admin **disembunyikan** dan tidak ada tombolnya di layar. Ada dua cara mem
 
 **Cara 2: lewat URL**
 
-Tambahkan `#admin` di akhir alamat, lalu tekan Enter. Contoh: `index.html#admin` atau `https://username.github.io/nama-repo/#admin`. Kotak login langsung muncul.
+Tambahkan `#admin` di akhir alamat, lalu tekan Enter. Contoh: `index.html#admin` atau `https://username.github.io/nama-repo/#admin`.
 
 **Login default**
 
@@ -79,7 +104,7 @@ Tambahkan `#admin` di akhir alamat, lalu tekan Enter. Contoh: `index.html#admin`
 | Username | `admin` |
 | Password | `admin` |
 
-Segera ganti password-nya lewat bagian **Ganti password admin** di dalam panel. Tombol **Tutup** atau tombol `Esc` menutup panel.
+> **Wajib diganti** lewat bagian **Ganti password admin** di dalam panel. Tombol **Tutup** atau tombol `Esc` menutup panel.
 
 Setelah mengubah sesuatu:
 
@@ -92,17 +117,17 @@ Setelah mengubah sesuatu:
 Di panel admin ada bagian **Teks & ucapan**:
 
 - **Kartu ucapan**: ubah isi tiap kartu, tambah kartu baru, hapus, atau geser urutan dengan tombol ↑ ↓. Satu baris di dalam kartu = satu paragraf.
-- **Sampul, kejutan cincin, dan penutup**: tiap kalimatnya punya kolom sendiri.
+- **Sampul, kejutan, dan penutup**: tiap kalimatnya punya kolom sendiri.
 - Ketik `{NICK}` untuk nama panggilan dan `{FULL}` untuk nama lengkap. Keduanya diganti otomatis.
 - Kolom yang dikosongkan akan kembali ke teks bawaan. Tombol **Kembalikan semua teks ke bawaan** mengatur ulang semuanya.
-
-Setelah selesai klik **Simpan perubahan**, lalu **Unduh HTML** kalau file mau dikirim ke orang lain.
 
 ### Lewat kode
 
 Teks bawaan ada di konstanta `DEFAULT_TEXTS` (dan `DEFAULT_MESSAGES` untuk kartu ucapan) di dalam `<script>`. Teks hasil edit disimpan di `cfg.texts` dan ikut tersimpan di `siteConfig` saat "Unduh HTML".
 
-## Struktur & Cara Kerja
+---
+
+## 🧩 Struktur & Cara Kerja
 
 Semuanya ada di satu file:
 
@@ -110,26 +135,32 @@ Semuanya ada di satu file:
 |---|---|
 | `<style>` | Seluruh CSS, termasuk 8 tema warna lewat CSS variable dan atribut `data-theme` |
 | `<section class="stage">` | Tiap halaman. Hanya satu yang aktif pada satu waktu (`goTo('stage-...')`) |
-| `<script id="siteConfig" type="application/json">` | Data yang bisa diedit: nama, teks, foto (base64), gambar cincin, tema, akun admin |
+| `<script id="siteConfig" type="application/json">` | Data yang bisa diedit: nama, teks, foto (base64), gambar, tema, akun admin |
 | `<script>` | Logika navigasi, musik (Web Audio), efek, dan panel admin |
 
-Beberapa detail teknis:
+Detail teknis:
 
-- **Foto disimpan sebagai base64** di dalam JSON `siteConfig`, jadi file HTML-nya mandiri (self-contained). Konsekuensinya ukuran file besar (sekitar 1 MB).
-- **Fitur "Unduh HTML"** bekerja dengan mengambil salinan HTML asli (`ORIGINAL_HTML`), lalu mengganti isi `siteConfig` dengan konfigurasi terbaru.
+- **Foto disimpan sebagai base64** di dalam JSON `siteConfig`, jadi file HTML-nya mandiri (self-contained). Konsekuensinya ukuran file cukup besar (sekitar 1 MB).
+- **Fitur "Unduh HTML"** mengambil salinan HTML asli (`ORIGINAL_HTML`), lalu mengganti isi `siteConfig` dengan konfigurasi terbaru.
 - **Konfigurasi aktif** dipilih lewat nomor revisi (`rev`): data di `localStorage` hanya dipakai kalau `rev`-nya lebih baru daripada yang ada di file.
 - **Musik** dibuat dengan oscillator bertipe `triangle`, dengan notasi nada ditulis sebagai array `tune`.
 
-## Catatan Penting
+---
 
-- **Keamanan panel admin bersifat kosmetik.** Login-nya berjalan sepenuhnya di sisi browser dan password hanya di-hash sederhana, jadi **bukan** perlindungan sungguhan. Siapa pun yang bisa membuka file bisa membaca atau melewati login lewat DevTools. Gunakan hanya untuk mencegah orang iseng mengubah tampilan, bukan untuk menyimpan sesuatu yang rahasia.
-- **Foto pribadi ikut tertanam di file.** Kalau repo ini publik, semua foto, X-ray cincin, dan nota di dalam file ikut bisa dilihat dan diunduh siapa saja. Sebelum di-publish, ganti dengan foto contoh atau jadikan repo **private**.
-- Font dimuat dari Google Fonts (Fraunces dan Karla).
+## 💻 Teknologi
 
-## Teknologi
+HTML, CSS, dan JavaScript murni (vanilla). Tidak ada dependensi, bundler, ataupun backend. Font: Fraunces dan Karla (Google Fonts).
 
-HTML, CSS, dan JavaScript murni (vanilla). Tidak ada dependensi, bundler, ataupun backend.
+---
 
-## Lisensi
+## 🤝 Kontribusi
 
-Silakan pakai dan modifikasi untuk keperluan pribadi. Sesuaikan bagian ini dengan lisensi yang kamu mau (misalnya MIT) sebelum dipublikasikan.
+Punya ide tema, bunga, atau efek baru? Silakan buka **Issue** atau **Pull Request**.
+
+## ⭐ Dukung
+
+Kalau project ini berguna, kasih ⭐ di repo ini ya!
+
+## 📄 Lisensi
+
+MIT License. Bebas dipakai dan dimodifikasi.
