@@ -527,15 +527,6 @@
   .fl-burst{position:absolute;left:var(--x);top:92vh;pointer-events:none;animation:flBurst 2.6s cubic-bezier(.2,.7,.3,1) forwards;opacity:0}
   @keyframes flBurst{0%{transform:translate(0,0) scale(.3);opacity:0}12%{opacity:1}to{transform:translate(var(--dx),var(--dy)) scale(1.1) rotate(var(--rot));opacity:0}}
   .flw-btn{font-size:1.6rem;text-align:center}.flw-btn span{display:block;font-size:.72rem;margin-top:2px}
-  textarea.admin-input{ resize:vertical; line-height:1.45; min-height:54px; }
-  .tx-card{ border:1.5px solid var(--line); border-radius:14px; padding:10px; margin:0 0 10px; background:#fff; }
-  .tx-head{ display:flex; align-items:center; gap:6px; margin-bottom:6px; font-size:.8rem; font-weight:700; color:var(--plum); }
-  .tx-head span{ flex:1; }
-  .tx-head button{ border:none; border-radius:8px; background:var(--blush); color:var(--plum); font-size:.85rem; width:30px; height:30px; cursor:pointer; line-height:1; }
-  .tx-head button:disabled{ opacity:.35; cursor:default; }
-  .tx-head .tx-del{ color:#b3261e; }
-  .tx-add{ border:1.5px dashed var(--rose); background:transparent; color:var(--plum); font-family:inherit; font-weight:700; font-size:.88rem; padding:10px 14px; border-radius:12px; cursor:pointer; margin:2px 0 4px; }
-  .tx-reset{ display:block; margin-top:16px; border-style:solid; border-color:var(--line); opacity:.8; }
 </style>
 </head>
 <body>
@@ -547,47 +538,6 @@
   <span></span><span></span><span></span><span></span><span></span><span></span>
 </div>
 <button class="sound-toggle" id="soundToggle" onclick="toggleMute()" aria-label="Suara">🔈</button>
-  CATATAN:
-  - Edit yang dibuat SEBELUM script ini dipasang belum tercatat. Kalau tahu nama
-    key-nya, isi di array KEYS di bawah (cari "localStorage.setItem" di file).
-  - Edit permanen: pakai tombol "Unduh HTML" di panel admin lalu upload hasilnya.
--->
-<script>
-(function () {
-  var RESET_MS = 30 * 60 * 1000;        // 30 menit
-  var TS_KEY   = '__autoResetAt';
-  var REG_KEY  = '__autoResetKeys';
-  var KEYS     = [];                    // opsional: ['namaKey1', 'namaKey2']
- 
-  var ls, origSet, origGet, origRemove;
-  try {
-    ls = window.localStorage;
-    origSet = Storage.prototype.setItem;
-    origGet = Storage.prototype.getItem;
-    origRemove = Storage.prototype.removeItem;
-  } catch (e) { return; }
- 
-  function readReg() {
-    try { return JSON.parse(origGet.call(ls, REG_KEY) || '[]'); } catch (e) { return []; }
-  }
- 
-  // catat key yang ditulis website
-  try {
-    Storage.prototype.setItem = function (k, v) {
-      try {
-        if (this === ls && k !== TS_KEY && k !== REG_KEY) {
-          var reg = readReg();
-          if (reg.indexOf(k) === -1) {
-            reg.push(k);
-            origSet.call(ls, REG_KEY, JSON.stringify(reg));
-          }
-        }
-      } catch (e) {}
-      return origSet.apply(this, arguments);
-    };
-  } catch (e) {}
- 
-  function doReset() {
 
 <!-- STAGE 0: ENVELOPE -->
 <div class="stage-wrap">
@@ -614,7 +564,7 @@
     <p class="eyebrow">20 tahun yang penuh cerita</p>
     <div class="hero-frame"><img id="heroImg" alt=""></div>
     <h1 class="cover-title">Selamat Ulang Tahun,<br><span class="cover-name" data-name="full">Imelda Salsa Bela .S</span></h1>
-    <p class="cover-sub" data-text="coverSub">Semoga hari ini terasa sehangat orang-orang yang menyayangimu.</p>
+    <p class="cover-sub">Semoga hari ini terasa sehangat orang-orang yang menyayangimu.</p>
     <button class="btn" onclick="goTo('stage-message')">Baca Ucapannya</button>
   </div>
 </section>
@@ -680,10 +630,10 @@
 <section class="stage" id="stage-ring">
   <div class="card">
     <p class="eyebrow">satu kejutan kecil lagi</p>
-    <h2 class="ring-title" data-text="ringTitle">Ini yang Aku Siapin Diam-Diam</h2>
-    <p class="ring-sub" data-text="ringSub">Sebelum ulang tahunmu, aku sempat custom-in sebuah cincin buat kamu.</p>
+    <h2 class="ring-title">Ini yang Aku Siapin Diam-Diam</h2>
+    <p class="ring-sub">Sebelum ulang tahunmu, aku sempat custom-in sebuah cincin buat kamu.</p>
     <div class="ring-frame"><img id="ringXrayImg" alt="Hasil x-ray cincin custom"></div>
-    <p class="ring-note" data-text="ringNote">"Nggak perlu mewah, yang penting dibuat dengan niat. Karena menurutku, kamu pantas dapat sesuatu yang lucu dan tulus kayak ini."</p>
+    <p class="ring-note">"Nggak perlu mewah, yang penting dibuat dengan niat. Karena menurutku, kamu pantas dapat sesuatu yang lucu dan tulus kayak ini."</p>
     <span class="receipt-toggle" onclick="toggleReceipt()" id="receiptToggleText">Lihat nota pembeliannya</span>
     <div class="receipt-frame" id="receiptFrame">
       <div class="ring-frame"><img id="ringNotaImg" alt="Nota pembelian cincin"></div>
@@ -699,11 +649,11 @@
 <section class="stage" id="stage-closing">
   <div class="card">
     <p class="eyebrow">semoga selalu</p>
-    <h1 class="closing-title" data-text="closingTitle">Bahagia &amp; Bangga <br>Jadi Diri Sendiri</h1>
-    <p class="closing-msg" data-text="closing0">"Semoga semua harapanmu di usia 20 ini perlahan menemukan jalannya."</p>
-    <p class="closing-msg" data-text="closing1">"Dan kalau suatu hari kamu sedih, jangan dipendam sendiri — cerita aja ke aku, aku selalu punya waktu untukmu."</p>
-    <p class="closing-msg" data-text="closing2">"Selamat ulang tahun, <span data-name="full">Imelda Salsa Bela .S</span>. Teruslah bersinar, dan izinkan aku jadi salah satu yang paling bahagia melihatmu bahagia."</p>
-    <p class="signature" data-text="signature">Dari seseorang yang selalu mendoakan yang terbaik untukmu 🎉</p>
+    <h1 class="closing-title">Bahagia &amp; Bangga <br>Jadi Diri Sendiri</h1>
+    <p class="closing-msg">"Semoga semua harapanmu di usia 20 ini perlahan menemukan jalannya."</p>
+    <p class="closing-msg">"Dan kalau suatu hari kamu sedih, jangan dipendam sendiri — cerita aja ke aku, aku selalu punya waktu untukmu."</p>
+    <p class="closing-msg">"Selamat ulang tahun, <span data-name="full">Imelda Salsa Bela .S</span>. Teruslah bersinar, dan izinkan aku jadi salah satu yang paling bahagia melihatmu bahagia."</p>
+    <p class="signature">Dari seseorang yang selalu mendoakan yang terbaik untukmu 🎉</p>
     <button class="btn secondary" onclick="restartAll()">Buka Ulang dari Awal</button>
   </div>
 </section>
@@ -747,37 +697,6 @@
         <input class="admin-input" id="admFull">
         <label class="admin-label" for="admNick">Nama panggilan (sapaan, mis. "Tiup Lilinnya, ...")</label>
         <input class="admin-input" id="admNick">
-      </div>
-
-      <div class="admin-sec">
-        <h3>Teks &amp; ucapan</h3>
-        <p class="admin-hint">Ketik <b>{NICK}</b> untuk nama panggilan dan <b>{FULL}</b> untuk nama lengkap, nanti otomatis diganti. Di kartu ucapan, satu baris = satu paragraf.</p>
-        <label class="admin-label">Kartu ucapan</label>
-        <div id="admMsgList"></div>
-        <button type="button" class="tx-add" onclick="admAddMsg()">+ Tambah kartu</button>
-
-        <label class="admin-label" for="admCoverSub">Kalimat di halaman sampul</label>
-        <textarea class="admin-input" id="admCoverSub" rows="2"></textarea>
-
-        <label class="admin-label" for="admRingTitle">Kejutan cincin: judul</label>
-        <textarea class="admin-input" id="admRingTitle" rows="2"></textarea>
-        <label class="admin-label" for="admRingSub">Kejutan cincin: kalimat pembuka</label>
-        <textarea class="admin-input" id="admRingSub" rows="2"></textarea>
-        <label class="admin-label" for="admRingNote">Kejutan cincin: catatan</label>
-        <textarea class="admin-input" id="admRingNote" rows="3"></textarea>
-
-        <label class="admin-label" for="admClosingTitle">Penutup: judul (Enter = baris baru)</label>
-        <textarea class="admin-input" id="admClosingTitle" rows="2"></textarea>
-        <label class="admin-label" for="admClosing0">Penutup: paragraf 1</label>
-        <textarea class="admin-input" id="admClosing0" rows="2"></textarea>
-        <label class="admin-label" for="admClosing1">Penutup: paragraf 2</label>
-        <textarea class="admin-input" id="admClosing1" rows="3"></textarea>
-        <label class="admin-label" for="admClosing2">Penutup: paragraf 3</label>
-        <textarea class="admin-input" id="admClosing2" rows="3"></textarea>
-        <label class="admin-label" for="admSignature">Penutup: tanda tangan</label>
-        <textarea class="admin-input" id="admSignature" rows="2"></textarea>
-
-        <button type="button" class="tx-add tx-reset" onclick="admResetTexts()">Kembalikan semua teks ke bawaan</button>
       </div>
 
       <div class="admin-sec">
@@ -857,24 +776,6 @@ const ORIGINAL_HTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
 const CFG_KEY = 'birthdayCfgV1';
 const byId = id => document.getElementById(id);
 
-const DEFAULT_MESSAGES = [
-  ["Selamat ulang tahun, {NICK}. Dari semua orang yang boleh aku doakan hari ini, kamu yang paling aku harapkan bahagia."],
-  ["Di usia 20 ini, aku cuma minta satu hal dari kamu: jangan sering-sering sedih sendirian."],
-  ["Kalau ada hari yang berat, kalau ada air mata yang mau jatuh, cerita aja ke aku. Aku selalu ada, kapan pun itu."],
-  ["Kamu nggak harus kuat terus. Sesekali boleh capek, boleh rapuh — tapi tolong jangan lupa, ada aku yang siap dengerin."],
-  ["Senyummu itu salah satu hal favoritku. Jadi jangan simpan sedihmu sendirian sampai senyum itu hilang."],
-  ["Aku pengen kamu tahu, kebahagiaanmu itu penting banget buatku — mungkin lebih dari yang kamu kira."],
-  ["Setiap mimpi yang kamu kejar, aku akan selalu jadi salah satu yang paling semangat mendukungmu dari belakang layar."],
-  ["Kalau dunia lagi nggak baik sama kamu, izinkan aku jadi tempat yang selalu baik untukmu."],
-  ["20 tahun bukan angka yang kecil. Tapi sebesar apa pun tantangannya, kamu nggak pernah sendirian menghadapinya."],
-  ["Terus jadi {NICK} yang hangat dan ceria, yang selalu bikin orang di sekitarnya nyaman. Dunia butuh lebih banyak orang sepertimu."],
-  ["Kalau suatu hari kamu ragu sama dirimu sendiri, ingat ini: ada orang yang percaya penuh sama kamu, tanpa syarat."],
-  ["Semoga di usia ini kamu belajar mencintai dirimu sendiri, sebesar kamu mencintai orang lain."],
-  ["Aku nggak bisa janji selalu ada di setiap detik. Tapi aku janji, setiap kali kamu butuh cerita, aku akan selalu punya waktu untukmu."],
-  ["Selamat ulang tahun, {FULL}. Semoga bahagia selalu jadi pilihan yang paling sering kamu ambil — dan kalau lagi susah menemukannya, izinkan aku bantu kamu mencarinya lagi."]
-];
-const DEFAULT_TEXTS = Object.assign({ messages: DEFAULT_MESSAGES }, {"coverSub": "Semoga hari ini terasa sehangat orang-orang yang menyayangimu.", "ringTitle": "Ini yang Aku Siapin Diam-Diam", "ringSub": "Sebelum ulang tahunmu, aku sempat custom-in sebuah cincin buat kamu.", "ringNote": "\"Nggak perlu mewah, yang penting dibuat dengan niat. Karena menurutku, kamu pantas dapat sesuatu yang lucu dan tulus kayak ini.\"", "closingTitle": "Bahagia & Bangga\nJadi Diri Sendiri", "closing0": "\"Semoga semua harapanmu di usia 20 ini perlahan menemukan jalannya.\"", "closing1": "\"Dan kalau suatu hari kamu sedih, jangan dipendam sendiri — cerita aja ke aku, aku selalu punya waktu untukmu.\"", "closing2": "\"Selamat ulang tahun, {FULL}. Teruslah bersinar, dan izinkan aku jadi salah satu yang paling bahagia melihatmu bahagia.\"", "signature": "Dari seseorang yang selalu mendoakan yang terbaik untukmu 🎉"});
-
 function deepClone(o){ return JSON.parse(JSON.stringify(o)); }
 
 function withDefaults(c){
@@ -888,26 +789,7 @@ function withDefaults(c){
   c.gallery = Object.assign({ together:[], solo:[] }, c.gallery || {});
   c.ring = Object.assign({ xray:'', nota:'' }, c.ring || {});
   c.admin = Object.assign({ user:'admin', hash:null }, c.admin || {});
-  c.texts = normTexts(c.texts);
   return c;
-}
-
-function normTexts(t){
-  const d = deepClone(DEFAULT_TEXTS);
-  t = (t && typeof t === 'object') ? t : {};
-  Object.keys(d).forEach(k => {
-    if(k === 'messages'){
-      if(Array.isArray(t.messages)){
-        const m = t.messages
-          .map(p => (Array.isArray(p) ? p : [p]).map(s => String(s).trim()).filter(Boolean))
-          .filter(p => p.length);
-        if(m.length) d.messages = m;
-      }
-    } else if(typeof t[k] === 'string' && t[k].trim()){
-      d[k] = t[k];
-    }
-  });
-  return d;
 }
 
 function loadConfig(){
@@ -1002,7 +884,22 @@ function toggleMute(){
 }
 /* ---------- end musik ---------- */
 
-function msgPages(){ return cfg.texts.messages; }
+const messagePages = [
+  ["Selamat ulang tahun, {NICK}. Dari semua orang yang boleh aku doakan hari ini, kamu yang paling aku harapkan bahagia."],
+  ["Di usia 20 ini, aku cuma minta satu hal dari kamu: jangan sering-sering sedih sendirian."],
+  ["Kalau ada hari yang berat, kalau ada air mata yang mau jatuh, cerita aja ke aku. Aku selalu ada, kapan pun itu."],
+  ["Kamu nggak harus kuat terus. Sesekali boleh capek, boleh rapuh — tapi tolong jangan lupa, ada aku yang siap dengerin."],
+  ["Senyummu itu salah satu hal favoritku. Jadi jangan simpan sedihmu sendirian sampai senyum itu hilang."],
+  ["Aku pengen kamu tahu, kebahagiaanmu itu penting banget buatku — mungkin lebih dari yang kamu kira."],
+  ["Setiap mimpi yang kamu kejar, aku akan selalu jadi salah satu yang paling semangat mendukungmu dari belakang layar."],
+  ["Kalau dunia lagi nggak baik sama kamu, izinkan aku jadi tempat yang selalu baik untukmu."],
+  ["20 tahun bukan angka yang kecil. Tapi sebesar apa pun tantangannya, kamu nggak pernah sendirian menghadapinya."],
+  ["Terus jadi {NICK} yang hangat dan ceria, yang selalu bikin orang di sekitarnya nyaman. Dunia butuh lebih banyak orang sepertimu."],
+  ["Kalau suatu hari kamu ragu sama dirimu sendiri, ingat ini: ada orang yang percaya penuh sama kamu, tanpa syarat."],
+  ["Semoga di usia ini kamu belajar mencintai dirimu sendiri, sebesar kamu mencintai orang lain."],
+  ["Aku nggak bisa janji selalu ada di setiap detik. Tapi aku janji, setiap kali kamu butuh cerita, aku akan selalu punya waktu untukmu."],
+  ["Selamat ulang tahun, {FULL}. Semoga bahagia selalu jadi pilihan yang paling sering kamu ambil — dan kalau lagi susah menemukannya, izinkan aku bantu kamu mencarinya lagi."]
+];
 let msgIdx = 0;
 
 function renderMsgPage(){
@@ -1010,31 +907,29 @@ function renderMsgPage(){
   const dots = document.getElementById('msgDots');
   const eyebrow = document.getElementById('msgEyebrow');
   const btn = document.getElementById('msgNextBtn');
-  if(msgIdx >= msgPages().length) msgIdx = msgPages().length - 1;
-  if(msgIdx < 0) msgIdx = 0;
 
   wrap.innerHTML = '';
-  msgPages()[msgIdx].forEach((line, i)=>{
+  messagePages[msgIdx].forEach((line, i)=>{
     const p = document.createElement('p');
     p.textContent = fillTokens(line);
     p.style.animationDelay = (0.05 + i*0.35) + 's';
     wrap.appendChild(p);
   });
 
-  eyebrow.textContent = `untuk ${cfg.name.nick} — (${msgIdx+1}/${msgPages().length})`;
+  eyebrow.textContent = `untuk ${cfg.name.nick} — (${msgIdx+1}/${messagePages.length})`;
 
   dots.innerHTML = '';
-  msgPages().forEach((_, i)=>{
+  messagePages.forEach((_, i)=>{
     const d = document.createElement('span');
     if(i===msgIdx) d.classList.add('active');
     dots.appendChild(d);
   });
 
-  btn.textContent = (msgIdx === msgPages().length-1) ? 'Lihat Kenangan' : 'Lanjut';
+  btn.textContent = (msgIdx === messagePages.length-1) ? 'Lihat Kenangan' : 'Lanjut';
 }
 
 function nextMessage(){
-  if(msgIdx < msgPages().length - 1){
+  if(msgIdx < messagePages.length - 1){
     msgIdx++;
     renderMsgPage();
   } else {
@@ -1176,28 +1071,12 @@ function renderGalleryGroup(trackId, titleId, list){
   title.style.display = has ? '' : 'none';
 }
 
-function setText(el, txt){
-  el.textContent = '';
-  fillTokens(txt).split('\n').forEach((s, i) => {
-    if(i) el.appendChild(document.createElement('br'));
-    el.appendChild(document.createTextNode(s));
-  });
-}
-
-function applyTexts(){
-  document.querySelectorAll('[data-text]').forEach(el => {
-    const v = cfg.texts[el.dataset.text];
-    if(typeof v === 'string') setText(el, v);
-  });
-}
-
 function applyConfig(){
   applyTheme(cfg.theme);
   applyFlower(cfg.flower);
   document.title = 'Untuk ' + cfg.name.full + ' — 20 Tahun';
   document.querySelectorAll('[data-name="full"]').forEach(e => { e.textContent = cfg.name.full; });
   document.querySelectorAll('[data-name="nick"]').forEach(e => { e.textContent = cfg.name.nick; });
-  applyTexts();
 
   const hero = byId('heroImg');
   if(cfg.hero){ hero.src = cfg.hero; } else { hero.removeAttribute('src'); }
@@ -1286,7 +1165,6 @@ function showPanel(){
   renderAdminPhotos();
   renderAdminThemes();
   renderAdminDecor();
-  renderAdminTexts();
   byId('adminBox').scrollTop = 0;
 }
 
@@ -1408,93 +1286,6 @@ async function admSetRing(input, key){
   }catch(e){ admMsg('Gambar tidak bisa dibaca. Coba format JPG atau PNG.', false); }
 }
 
-const TX_FIELDS = { admCoverSub:'coverSub', admRingTitle:'ringTitle', admRingSub:'ringSub', admRingNote:'ringNote',
-  admClosingTitle:'closingTitle', admClosing0:'closing0', admClosing1:'closing1', admClosing2:'closing2', admSignature:'signature' };
-
-function syncMsgDraft(){
-  const boxes = document.querySelectorAll('#admMsgList textarea');
-  if(!boxes.length) return;
-  draft.texts.messages = Array.from(boxes).map(t => t.value.split('\n').map(s => s.trim()).filter(Boolean));
-}
-
-function syncTextDraft(){
-  syncMsgDraft();
-  Object.keys(TX_FIELDS).forEach(id => { draft.texts[TX_FIELDS[id]] = byId(id).value; });
-}
-
-function renderAdminTexts(){
-  Object.keys(TX_FIELDS).forEach(id => { byId(id).value = draft.texts[TX_FIELDS[id]]; });
-  renderMsgEditor();
-}
-
-function renderMsgEditor(){
-  const box = byId('admMsgList');
-  const list = draft.texts.messages;
-  box.innerHTML = '';
-  list.forEach((lines, i) => {
-    const card = document.createElement('div');
-    card.className = 'tx-card';
-    const head = document.createElement('div');
-    head.className = 'tx-head';
-    const t = document.createElement('span');
-    t.textContent = 'Kartu ' + (i + 1) + ' dari ' + list.length;
-    head.appendChild(t);
-    const mk = (label, title, cls, fn, off) => {
-      const b = document.createElement('button');
-      b.type = 'button'; b.textContent = label; b.title = title;
-      if(cls) b.className = cls;
-      b.disabled = !!off;
-      b.onclick = fn;
-      head.appendChild(b);
-    };
-    mk('↑', 'Naikkan', '', () => admMoveMsg(i, -1), i === 0);
-    mk('↓', 'Turunkan', '', () => admMoveMsg(i, 1), i === list.length - 1);
-    mk('✕', 'Hapus kartu', 'tx-del', () => admDelMsg(i), list.length <= 1);
-    const ta = document.createElement('textarea');
-    ta.className = 'admin-input';
-    ta.rows = Math.min(8, Math.max(3, Math.ceil(lines.join('\n').length / 38) + 1));
-    ta.value = lines.join('\n');
-    ta.setAttribute('aria-label', 'Isi kartu ' + (i + 1));
-    card.appendChild(head);
-    card.appendChild(ta);
-    box.appendChild(card);
-  });
-}
-
-function admMoveMsg(i, d){
-  syncMsgDraft();
-  const a = draft.texts.messages, j = i + d;
-  if(j < 0 || j >= a.length) return;
-  [a[i], a[j]] = [a[j], a[i]];
-  renderMsgEditor();
-  admMsg('Urutan kartu diubah. Klik "Simpan perubahan" untuk menerapkan.', true);
-}
-
-function admDelMsg(i){
-  syncMsgDraft();
-  const a = draft.texts.messages;
-  if(a.length <= 1) return;
-  if(a[i].length && !confirm('Hapus kartu ' + (i + 1) + '?')) return;
-  a.splice(i, 1);
-  renderMsgEditor();
-  admMsg('Kartu dihapus. Klik "Simpan perubahan" untuk menerapkan.', true);
-}
-
-function admAddMsg(){
-  syncMsgDraft();
-  draft.texts.messages.push([]);
-  renderMsgEditor();
-  const tas = document.querySelectorAll('#admMsgList textarea');
-  if(tas.length) tas[tas.length - 1].focus();
-}
-
-function admResetTexts(){
-  if(!confirm('Kembalikan semua teks (kartu ucapan, sampul, kejutan, penutup) ke versi awal? Foto dan pengaturan lain tidak berubah.')) return;
-  draft.texts = deepClone(DEFAULT_TEXTS);
-  renderAdminTexts();
-  admMsg('Teks dikembalikan ke bawaan. Klik "Simpan perubahan" untuk menerapkan.', true);
-}
-
 function persistCfg(){
   try{ localStorage.setItem(CFG_KEY, JSON.stringify(cfg)); return true; }catch(e){ return false; }
 }
@@ -1507,9 +1298,6 @@ function saveAdmin(silent){
   draft.name.full = full;
   draft.name.nick = nick;
   byId('admNick').value = nick;
-  syncTextDraft();
-  draft.texts = normTexts(draft.texts);
-  renderAdminTexts();
   draft.rev = Date.now();
   cfg = deepClone(draft);
   const stored = persistCfg();
