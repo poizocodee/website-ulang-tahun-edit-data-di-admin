@@ -3,7 +3,7 @@
 ### Interactive Birthday Greeting Website: single HTML file, no framework, editable admin panel
 
 [![Demo Live](https://img.shields.io/badge/Demo-Live-ff69b4?style=for-the-badge)](https://poizocodee.github.io/website-ulang-tahun-edit-data-di-admin/)
-![HTML](https://img.shields.io/badge/HTML-CSS-JS-orange?style=for-the-badge)
+
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
 **🔗 DEMO LIVE:** https://poizocodee.github.io/website-ulang-tahun-edit-data-di-admin/
