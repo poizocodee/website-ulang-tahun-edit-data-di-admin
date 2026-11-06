@@ -547,6 +547,47 @@
   <span></span><span></span><span></span><span></span><span></span><span></span>
 </div>
 <button class="sound-toggle" id="soundToggle" onclick="toggleMute()" aria-label="Suara">🔈</button>
+  CATATAN:
+  - Edit yang dibuat SEBELUM script ini dipasang belum tercatat. Kalau tahu nama
+    key-nya, isi di array KEYS di bawah (cari "localStorage.setItem" di file).
+  - Edit permanen: pakai tombol "Unduh HTML" di panel admin lalu upload hasilnya.
+-->
+<script>
+(function () {
+  var RESET_MS = 30 * 60 * 1000;        // 30 menit
+  var TS_KEY   = '__autoResetAt';
+  var REG_KEY  = '__autoResetKeys';
+  var KEYS     = [];                    // opsional: ['namaKey1', 'namaKey2']
+ 
+  var ls, origSet, origGet, origRemove;
+  try {
+    ls = window.localStorage;
+    origSet = Storage.prototype.setItem;
+    origGet = Storage.prototype.getItem;
+    origRemove = Storage.prototype.removeItem;
+  } catch (e) { return; }
+ 
+  function readReg() {
+    try { return JSON.parse(origGet.call(ls, REG_KEY) || '[]'); } catch (e) { return []; }
+  }
+ 
+  // catat key yang ditulis website
+  try {
+    Storage.prototype.setItem = function (k, v) {
+      try {
+        if (this === ls && k !== TS_KEY && k !== REG_KEY) {
+          var reg = readReg();
+          if (reg.indexOf(k) === -1) {
+            reg.push(k);
+            origSet.call(ls, REG_KEY, JSON.stringify(reg));
+          }
+        }
+      } catch (e) {}
+      return origSet.apply(this, arguments);
+    };
+  } catch (e) {}
+ 
+  function doReset() {
 
 <!-- STAGE 0: ENVELOPE -->
 <div class="stage-wrap">
