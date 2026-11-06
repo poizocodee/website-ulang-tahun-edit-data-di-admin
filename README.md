@@ -1,5 +1,5 @@
 # Website Ucapan Ulang Tahun Interaktif
-
+DEMO LIVE : https://poizocodee.github.io/website-ulang-tahun-edit-data-di-admin/
 Website ucapan ulang tahun yang dibuat dalam **satu file HTML** (tanpa framework, tanpa server, tanpa build). Cukup buka file-nya di browser, dan penerima akan melewati serangkaian halaman interaktif: mulai dari tirai/amplop yang dibuka, kartu ucapan, galeri foto, tiup lilin, sampai kejutan di akhir.
 
 Dibuat sebagai hadiah personal untuk ulang tahun ke-20. Semua teks, foto, dan tema bisa diganti lewat panel admin yang ada di dalam file itu sendiri, jadi proyek ini bisa dipakai ulang untuk orang lain.
